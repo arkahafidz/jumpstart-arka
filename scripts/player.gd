@@ -13,6 +13,8 @@ extends CharacterBody2D
 # Referensi node berdasarkan scene Anda
 @onready var sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var camera_2d: Camera2D = $Camera2D
+# --- TAMBAHKAN REFERENSI NODE AUDIO DI SINI ---
+@onready var jump_sound: AudioStreamPlayer2D = $AudioStreamPlayer2D 
 
 # Menyimpan target posisi horizontal kamera
 var target_camera_x: float = 0.0
@@ -31,6 +33,9 @@ func apply_gravity(delta: float) -> void:
 func handle_jump() -> void:
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+		# --- PANGGIL SUARA LOMPAT DI SINI ---
+		if jump_sound:
+			jump_sound.play()
 
 func handle_movement(delta: float) -> void:
 	var direction := Input.get_axis("left", "right")
