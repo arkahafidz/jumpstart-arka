@@ -6,13 +6,22 @@ extends CharacterBody2D
 @export var ACCELERATION: float = 2000.0
 @export var FRICTION: float = 1500.0
 
-# Referensi node Sprite (sesuaikan nama "Sprite2D" dengan yang ada di scene Anda)
+# Pengaturan Kamera Dinamis
+@export var CAMERA_LEAD_DISTANCE: float = 300.0  # Jarak diperbesar agar pandangan ke depan lebih luas
+@export var CAMERA_SMOOTH_SPEED: float = 4.0     # Sedikit diturunkan agar pergerakan terasa lebih cinematic
+
+# Referensi node berdasarkan scene Anda
 @onready var sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var camera_2d: Camera2D = $Camera2D
+
+# Menyimpan target posisi horizontal kamera
+var target_camera_x: float = 0.0
 
 func _physics_process(delta: float) -> void:
 	apply_gravity(delta)
 	handle_jump()
 	handle_movement(delta)
+	handle_camera(delta) # Memanggil fungsi kontrol kamera
 	move_and_slide()
 
 func apply_gravity(delta: float) -> void:
@@ -20,20 +29,27 @@ func apply_gravity(delta: float) -> void:
 		velocity += get_gravity() * delta
 
 func handle_jump() -> void:
-	# Menggunakan "ui_accept" atau buat custom action "jump" di Project Settings
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
 func handle_movement(delta: float) -> void:
-	# Menggunakan ui_left dan ui_right bawaan jika Anda belum membuat custom action
 	var direction := Input.get_axis("left", "right")
 	
 	if direction != 0:
-		# Bergerak halus menuju kecepatan maksimal menggunakan akselerasi
 		velocity.x = move_toward(velocity.x, direction * SPEED, ACCELERATION * delta)
-		# Mengubah arah hadap sprite berdasarkan input arah
 		if sprite_2d:
 			sprite_2d.flip_h = (direction < 0)
 	else:
-		# Berhenti secara halus menggunakan friksi/gesekan saat tidak ada input
 		velocity.x = move_toward(velocity.x, 0, FRICTION * delta)
+
+	# Kamera mengikuti arah hadap karakter, bukan hanya saat tombol ditekan
+	if sprite_2d:
+		if sprite_2d.flip_h:
+			target_camera_x = -CAMERA_LEAD_DISTANCE # Menghadap kiri, kamera ke kiri
+		else:
+			target_camera_x = CAMERA_LEAD_DISTANCE  # Menghadap kanan, kamera ke kanan
+
+func handle_camera(delta: float) -> void:
+	if camera_2d:
+		# Menggeser posisi X kamera secara halus (lerp) menuju target_camera_x
+		camera_2d.position.x = lerp(camera_2d.position.x, target_camera_x, CAMERA_SMOOTH_SPEED * delta)

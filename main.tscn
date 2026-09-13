@@ -79,7 +79,7 @@ position = Vector2(64, 560)
 shape = SubResource("RectangleShape2D_7dm0k")
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=365224718]
-position = Vector2(480, 424)
+position = Vector2(64, 458)
 position_smoothing_enabled = true
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1830231973]
@@ -88,10 +88,10 @@ tile_set = SubResource("TileSet_pll8k")
 
 [node name="Label" type="Label" parent="." unique_id=919280910]
 z_index = -1
-offset_left = 312.0
-offset_top = 393.0
-offset_right = 759.0
-offset_bottom = 456.0
+offset_left = 247.0
+offset_top = 389.0
+offset_right = 694.0
+offset_bottom = 452.0
 text = "Hello there, hooman"
 label_settings = SubResource("LabelSettings_pll8k")
 
