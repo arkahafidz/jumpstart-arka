@@ -23,6 +23,7 @@ var shake_vector: Vector2 = Vector2.ZERO
 var was_in_air: bool = false
 
 func _ready() -> void:
+	gamemanager.register_player(self)
 	if sprite_2d:
 		original_sprite_scale = sprite_2d.scale
 
