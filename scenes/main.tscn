@@ -83,8 +83,9 @@ size = Vector2(200, 200)
 [node name="Node" type="Node" unique_id=2135571101]
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1843182935 groups=["Player"]]
-position = Vector2(420, -970)
+position = Vector2(412, -1051)
 script = ExtResource("1_choun")
+JUMP_VELOCITY = -500.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player" unique_id=1041954057]
 z_index = 10
@@ -380,7 +381,7 @@ scale_amount_min = 0.0
 scale_amount_max = 0.1
 
 [node name="Jelly6" type="StaticBody2D" parent="." unique_id=665327310]
-position = Vector2(9624, 86)
+position = Vector2(9627, 86)
 scale = Vector2(0.25, 0.25)
 script = ExtResource("8_muem4")
 
@@ -406,7 +407,7 @@ scale_amount_min = 0.0
 scale_amount_max = 0.1
 
 [node name="Jelly7" type="StaticBody2D" parent="." unique_id=2039918879]
-position = Vector2(9966, -24)
+position = Vector2(9932, -24)
 scale = Vector2(0.25, 0.25)
 script = ExtResource("8_muem4")
 
@@ -458,7 +459,7 @@ scale_amount_min = 0.0
 scale_amount_max = 0.1
 
 [node name="Jelly9" type="StaticBody2D" parent="." unique_id=49878363]
-position = Vector2(11541, 5)
+position = Vector2(11670, 5)
 scale = Vector2(0.25, 0.25)
 script = ExtResource("8_muem4")
 
@@ -484,7 +485,7 @@ scale_amount_min = 0.0
 scale_amount_max = 0.1
 
 [node name="Jelly10" type="StaticBody2D" parent="." unique_id=1595482093]
-position = Vector2(11729, 6)
+position = Vector2(11986, 6)
 scale = Vector2(0.25, 0.25)
 script = ExtResource("8_muem4")
 
