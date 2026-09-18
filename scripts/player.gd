@@ -13,6 +13,7 @@ extends CharacterBody2D
 @onready var sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var jump_sound: AudioStreamPlayer2D = $AudioStreamPlayer2D 
+@onready var jelly_sound: AudioStreamPlayer2D = $AudioStreamPlayer2D2
 @onready var block_trail: CPUParticles2D = $CPUParticles2D
 
 var target_camera_x: float = 0.0
@@ -133,9 +134,9 @@ func handle_jelly_collisions() -> void:
 					trigger_juice_stretch(Vector2(1.4, 0.6))
 					
 				collider.take_damage(self)
-				if jump_sound:
-					jump_sound.pitch_scale = randf_range(0.95, 1.05)
-					jump_sound.play()
+				if jelly_sound:
+					jelly_sound.pitch_scale = randf_range(0.95, 1.05)
+					jelly_sound.play()
 
 func apply_juicy_shake(intensity: float, duration: float) -> void:
 	if shake_tween:

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dhwangewljj1n"
+path="res://.godot/imported/freesound_community-lid-03-83411 (mp3cut.net).mp3-38f4a59cd6f4c87f6c154b34ecb0877d.mp3str"
+
+[deps]
+
+source_file="res://sounds/freesound_community-lid-03-83411 (mp3cut.net).mp3"
+dest_files=["res://.godot/imported/freesound_community-lid-03-83411 (mp3cut.net).mp3-38f4a59cd6f4c87f6c154b34ecb0877d.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
