@@ -22,10 +22,13 @@ var shake_tween: Tween
 var shake_vector: Vector2 = Vector2.ZERO
 var was_in_air: bool = false
 
+var position_first: Vector2
+
 func _ready() -> void:
 	gamemanager.register_player(self)
 	if sprite_2d:
 		original_sprite_scale = sprite_2d.scale
+		_start_initialize_position()
 
 func _physics_process(delta: float) -> void:
 	apply_gravity(delta)
@@ -38,6 +41,7 @@ func _physics_process(delta: float) -> void:
 	handle_trail() 
 	move_and_slide()
 	handle_jelly_collisions()
+	_check_keyboard_input_for_r()
 
 func apply_gravity(delta: float) -> void:
 	if not is_on_floor():
@@ -155,3 +159,13 @@ func trigger_juice_stretch(target_scale: Vector2) -> void:
 	tween.tween_property(sprite_2d, "scale", original_sprite_scale * Vector2(target_scale.x * 1.3, target_scale.y * 0.6), 0.05).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	tween.tween_property(sprite_2d, "scale", original_sprite_scale * Vector2(target_scale.x * 0.8, target_scale.y * 1.2), 0.06).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(sprite_2d, "scale", original_sprite_scale, 0.3).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
+	
+func _start_initialize_position():
+	position_first = global_position
+	
+func _check_keyboard_input_for_r():
+	if Input.is_action_just_pressed("reset_position"):
+		back_to_firstpos()
+		
+func back_to_firstpos():
+	global_position = position_first

@@ -17,10 +17,6 @@ func add_jelly() -> void:
 func register_player(player_node: CharacterBody2D) -> void:
 	player = player_node
 	last_checkpoint_position = player.global_position
-	
-func update_checkpoint(checkpoint_pos: Vector2) -> void:
-	last_checkpoint_position = checkpoint_pos
-	print("Checkpoint diperbarui ke: ", last_checkpoint_position)
 
 func respawn_player() -> void:
 	if player != null:
